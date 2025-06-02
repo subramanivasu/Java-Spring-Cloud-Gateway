@@ -4,7 +4,7 @@ services:
     container_name: keycloak-mysql
     image: mysql:8
     volumes:
-      - ./volume-data/mysql_keycloak_data:/var/lib/mysql
+      - keycloak_mysql_data:/var/lib/mysql # Changed to named volume
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: keycloak
@@ -28,3 +28,6 @@ services:
       - ./docker/keycloak/realms/:/opt/keycloak/data/import/
     depends_on:
       - keycloak-mysql
+
+volumes: # Defining a named volume
+  keycloak_mysql_data:
